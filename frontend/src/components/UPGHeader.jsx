@@ -29,7 +29,7 @@ export default function UPGHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-4">
             <div className="rounded-2xl bg-pink-600 px-4 py-3 text-white shadow-lg shadow-pink-500/10">
               <span className="text-lg font-bold tracking-[0.2em]">UPG</span>
@@ -46,7 +46,7 @@ export default function UPGHeader() {
               </button>
             </div>
           </div>
-          <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+          <div className="flex flex-wrap items-center gap-3 text-slate-600 dark:text-slate-300">
             <button onClick={switchCurrency} className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium shadow-sm transition hover:border-pink-500 hover:text-pink-600 dark:border-slate-800 dark:bg-slate-900 dark:hover:text-pink-400">
               {currency}
             </button>
@@ -69,13 +69,13 @@ export default function UPGHeader() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 pt-4 dark:border-slate-800">
-          <div className="flex flex-wrap items-center gap-2">
-            <button type="button" onClick={() => navigate('/products')} className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:bg-pink-600">
+        <div className="flex flex-col gap-3 border-t border-slate-200 pt-4 dark:border-slate-800 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+            <button type="button" onClick={() => navigate('/products')} className="inline-flex shrink-0 items-center gap-2 rounded-full bg-black px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:bg-pink-600">
               <span>Category</span>
             </button>
             {categoryNav.map((item) => (
-              <Link key={item.label} to={item.href} className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-pink-500 hover:text-pink-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-pink-400">
+              <Link key={item.label} to={item.href} className="inline-flex shrink-0 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition hover:border-pink-500 hover:text-pink-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-pink-400">
                 <item.icon size={16} />
                 {item.label}
               </Link>

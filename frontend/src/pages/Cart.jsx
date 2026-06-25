@@ -33,7 +33,7 @@ function Cart() {
           {items.map((item) => (
             <div key={item.id} className="rounded-[2rem] border border-white/10 bg-black/60 p-5 sm:p-6">
               <div className="grid gap-4 sm:grid-cols-[120px_1fr_120px] sm:items-center">
-                <img src={item.image} alt={item.name} className="h-28 w-full rounded-3xl object-cover" />
+                <img src={item.image} alt={item.name} className="h-28 w-full rounded-3xl object-cover sm:h-32" />
                 <div>
                   <p className="text-sm uppercase tracking-[0.22em] text-slate-400">{item.category.name}</p>
                   <h2 className="mt-3 text-xl font-semibold text-white">{item.name}</h2>
@@ -43,14 +43,14 @@ function Cart() {
                   <div className="flex items-center justify-between rounded-3xl border border-white/10 bg-white/5 px-4 py-3">
                     <button
                       onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                      className="text-white/80 hover:text-white"
+                      className="text-white/80 hover:text-black"
                     >
                       -
                     </button>
                     <span className="text-white">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="text-white/80 hover:text-white"
+                      className="text-white/80 hover:text-black"
                     >
                       +
                     </button>
@@ -67,7 +67,7 @@ function Cart() {
           ))}
         </div>
 
-        <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-glass">
+        <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-glass sm:p-8">
           <p className="text-sm uppercase tracking-[0.24em] text-slate-400">Summary</p>
           <div className="mt-6 space-y-4">
             <div className="flex items-center justify-between text-slate-300">

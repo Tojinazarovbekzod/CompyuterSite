@@ -15,7 +15,7 @@ function AppHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-white shadow-sm dark:bg-slate-950 dark:border-slate-800">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <Link to="/" className="flex items-center gap-3 text-slate-900 dark:text-white">
             <div className="grid h-12 w-12 place-items-center rounded-3xl border border-pink-600/20 bg-pink-600/10 text-pink-600 shadow-sm shadow-pink-600/10">
               <Sparkles className="h-6 w-6" />
@@ -26,7 +26,7 @@ function AppHeader() {
             </div>
           </Link>
 
-          <div className="flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-600 dark:text-slate-300 sm:gap-3">
             <button onClick={switchCurrency} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-4 py-2 transition hover:border-pink-500/50 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800">
               <span className="font-semibold">{currency}</span>
               <ArrowRight className="h-4 w-4" />
@@ -34,35 +34,35 @@ function AppHeader() {
             <button onClick={toggleTheme} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200/80 bg-slate-50 transition hover:border-pink-500/60 dark:border-slate-700 dark:bg-slate-900">
               {theme === 'dark' ? <SunMedium className="h-5 w-5 text-pink-500" /> : <Moon className="h-5 w-5 text-slate-900" />}
             </button>
-            <a href="tel:+998901234567" className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-4 py-2 transition hover:border-pink-500/50 dark:border-slate-700 dark:bg-slate-900">
+            <a href="tel:+998901234567" className="hidden items-center gap-2 rounded-full border border-slate-200/80 bg-slate-50 px-4 py-2 transition hover:border-pink-500/50 dark:border-slate-700 dark:bg-slate-900 sm:inline-flex">
               <Phone className="h-4 w-4 text-pink-600" />
               <span>+998 90 123 4567</span>
             </a>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[2rem] border border-slate-200/70 bg-slate-100 px-4 py-4 dark:border-slate-800 dark:bg-slate-900">
-          <div className="flex-1 min-w-[220px]">
+        <div className="flex flex-col gap-3 rounded-[2rem] border border-slate-200/70 bg-slate-100 px-4 py-4 dark:border-slate-800 dark:bg-slate-900 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0 flex-1">
             <label className="relative block">
               <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
               <input type="search" placeholder="Search laptops, GPUs, PCs..." className="w-full rounded-full border border-transparent bg-white/90 py-3 pl-12 pr-4 text-sm text-slate-900 shadow-sm outline-none transition focus:border-pink-400 focus:ring-4 focus:ring-pink-200 dark:bg-slate-950 dark:text-white dark:focus:border-pink-500 dark:focus:ring-pink-500/20" />
             </label>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-slate-600 dark:text-slate-300">
-            <button type="button" onClick={() => navigate('/products')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+          <div className="flex gap-2 overflow-x-auto pb-1 text-slate-600 dark:text-slate-300 sm:flex-wrap sm:overflow-visible sm:pb-0">
+            <button type="button" onClick={() => navigate('/products')} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <Grid className="h-4 w-4 text-pink-500" /> Categories
             </button>
-            <button type="button" onClick={() => navigate('/products?category=configurator')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <button type="button" onClick={() => navigate('/products?category=configurator')} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <PackageCheck className="h-4 w-4 text-pink-500" /> Configurator
             </button>
-            <button type="button" onClick={() => navigate('/products?filter=wishlist')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <button type="button" onClick={() => navigate('/products?filter=wishlist')} className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <Heart className="h-4 w-4 text-pink-500" /> Wishlist
             </button>
-            <Link to="/cart" className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <Link to="/cart" className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <ShoppingCart className="h-4 w-4 text-pink-500" /> Cart <span className="rounded-full bg-pink-500 px-2 py-0.5 text-xs font-semibold text-white">{items.length}</span>
             </Link>
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <div className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <User className="h-4 w-4 text-pink-500" />
               {isAuthenticated ? (
                 <button onClick={logout} className="font-semibold text-slate-900 dark:text-white">Logout</button>

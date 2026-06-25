@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="border-t border-slate-200/20 bg-white py-10 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:px-8 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:gap-10 lg:px-8">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em] text-pink-600">UPG Store</p>
           <h3 className="text-xl font-semibold text-slate-950 dark:text-white">Modern electronics shopping experience</h3>

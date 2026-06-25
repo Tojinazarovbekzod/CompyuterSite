@@ -49,17 +49,17 @@ function ProductDetails() {
   }
 
   return (
-    <div className="space-y-10">
-      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/80 transition hover:text-white">
+    <div className="space-y-8 sm:space-y-10">
+      <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-white/80 transition hover:text-black">
         <ArrowLeft className="h-4 w-4" /> Back
       </button>
 
-      <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
         <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-glass">
           <img src={product.image} alt={product.name} className="h-[520px] w-full object-cover" />
         </div>
 
-        <div className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-10 shadow-glass">
+        <div className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-glass sm:p-10">
           <div className="space-y-4">
             <span className="text-sm uppercase tracking-[0.25em] text-slate-400">{product.category?.name || 'Uncategorized'}</span>
             <h1 className="text-4xl font-semibold text-white">{product.name}</h1>

@@ -69,13 +69,13 @@ function Products() {
 
   return (
     <div className="space-y-10">
-      <section className="rounded-[2rem] border border-white/10 bg-white/5 p-8 shadow-glass">
+      <section className="rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-glass sm:p-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.24em] text-slate-400">Product Catalog</p>
             <h1 className="mt-3 text-4xl font-semibold text-white">Browse our premium computers.</h1>
           </div>
-          <form onSubmit={handleSearch} className="flex w-full gap-3 sm:max-w-md">
+          <form onSubmit={handleSearch} className="flex w-full flex-col gap-3 sm:max-w-md sm:flex-row">
             <input
               name="search"
               defaultValue={query}
@@ -91,7 +91,7 @@ function Products() {
 
       <CategoryChips categories={categories} activeCategory={category} onCategoryClick={handleCategoryClick} />
 
-      <section className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+      <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
         {loading ? (
           <div className="col-span-full flex items-center justify-center rounded-[2rem] border border-white/10 bg-white/5 p-14">
             <LoadingSpinner />
@@ -105,7 +105,7 @@ function Products() {
         )}
       </section>
 
-      <section className="flex flex-col gap-3 rounded-[2rem] border border-white/10 bg-white/5 p-6 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
+      <section className="flex flex-col gap-3 rounded-[2rem] border border-white/10 bg-white/5 p-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between sm:p-6">
         <p>Page {page} of {totalPages}</p>
         <div className="flex gap-3">
           <Link

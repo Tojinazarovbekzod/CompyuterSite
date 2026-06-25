@@ -60,10 +60,10 @@ function HeroSlider() {
         ))}
       </Swiper>
       <div className="pointer-events-none absolute inset-y-1/2 left-4 right-4 flex items-center justify-between px-2 sm:px-4">
-        <button type="button" className="hero-prev pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+        <button type="button" className="hero-prev pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-black dark:border-slate-700 dark:bg-slate-950 dark:text-white">
           <ArrowLeft className="h-5 w-5" />
         </button>
-        <button type="button" className="hero-next pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+        <button type="button" className="hero-next pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-black dark:border-slate-700 dark:bg-slate-950 dark:text-white">
           <ArrowRight className="h-5 w-5" />
         </button>
       </div>

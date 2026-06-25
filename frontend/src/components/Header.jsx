@@ -7,9 +7,9 @@ function Header() {
           <p className="text-xs uppercase tracking-[0.25em] text-slate-500">Startap sayt</p>
         </div>
         <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-          <a href="#features" className="transition hover:text-white">Xizmatlar</a>
-          <a href="#catalog" className="transition hover:text-white">Mahsulotlar</a>
-          <a href="#contact" className="transition hover:text-white">Kontakt</a>
+          <a href="#features" className="transition hover:text-black">Xizmatlar</a>
+          <a href="#catalog" className="transition hover:text-black">Mahsulotlar</a>
+          <a href="#contact" className="transition hover:text-black">Kontakt</a>
         </nav>
         <a href="#contact" className="hidden rounded-full border border-white/15 bg-white/5 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/10 md:inline-flex">
           Buyurtma
