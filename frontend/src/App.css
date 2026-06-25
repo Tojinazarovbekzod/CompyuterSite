@@ -1,0 +1,232 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0c1220;
+  color: #e8eef8;
+  line-height: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(56, 137, 255, 0.18), transparent 35%),
+    radial-gradient(circle at 20% 20%, rgba(130, 97, 255, 0.16), transparent 30%);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: rgba(10, 18, 34, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.site-header nav a {
+  color: #e8eef8;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.site-header nav a:hover {
+  color: #78a9ff;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  padding: 4rem 2rem 2rem;
+  align-items: center;
+}
+
+.hero-copy .eyebrow {
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #6b7fdb;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  max-width: 12ch;
+}
+
+.hero-text {
+  margin: 1.25rem 0 2rem;
+  max-width: 56rem;
+  color: #cdd5ed;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #5f8bff, #77d2ff);
+  color: #09122f;
+}
+
+.secondary-button {
+  color: #d8e2ff;
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.hero-panel {
+  display: flex;
+  justify-content: center;
+}
+
+.status-card {
+  width: min(100%, 26rem);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+.status-card h2 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+.status-card p {
+  margin: 0.75rem 0 1rem;
+}
+
+.status-card span {
+  color: #8fa7ff;
+  font-size: 0.95rem;
+}
+
+.features-grid,
+.about-section,
+.contact-section {
+  padding: 2rem;
+}
+
+.features-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+}
+
+.feature-card h3 {
+  margin-top: 0;
+}
+
+.about-section {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-section h2 {
+  margin-bottom: 0.75rem;
+}
+
+.about-section p,
+.contact-section p {
+  margin: 0;
+  color: #c8d1f2;
+}
+
+.contact-section {
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+  margin-top: 1rem;
+  border-radius: 1.5rem;
+}
+
+.site-footer {
+  margin-top: auto;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #8c99c9;
+  font-size: 0.95rem;
+}
+
+code {
+  color: #a5d8ff;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    padding-top: 2.5rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-header nav {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .site-header nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
