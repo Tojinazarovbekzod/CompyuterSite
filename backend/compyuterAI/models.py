@@ -42,7 +42,7 @@ class Brand(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
-    brand = models.ForeignKey(Brand, related_name='products', on_delete=models.CASCADE)
+    brand = models.ForeignKey(Brand, related_name='products', on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(max_length=160)
     slug = models.SlugField(max_length=180, unique=True)
     short_description = models.CharField(max_length=250, blank=True)

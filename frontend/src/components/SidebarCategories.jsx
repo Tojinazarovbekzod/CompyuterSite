@@ -1,4 +1,4 @@
-import { Cpu, Monitor, Keyboard, MousePointerClick, Gamepad2, Headphones, Speaker, Wifi2 } from 'lucide-react'
+import { Cpu, Monitor, Keyboard, MousePointerClick, Gamepad2, Headphones, Speaker, Wifi } from 'lucide-react'
 
 const categories = [
   { label: 'Laptops', icon: Cpu },
