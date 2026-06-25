@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar.jsx'
+import AppHeader from './components/AppHeader.jsx'
 import Footer from './components/Footer.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import Home from './pages/Home.jsx'
@@ -15,10 +15,10 @@ import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
+    <div className="min-h-screen bg-white text-slate-950 dark:bg-slate-950 dark:text-white">
+      <AppHeader />
 
-      <main className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import Category, Product
+from .models import Brand, Category, Cart, CartItem, Order, Product, ProductImage
 
 
 class EchoSerializer(serializers.Serializer):
@@ -15,20 +15,65 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'slug', 'description']
 
 
+class BrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Brand
+        fields = ['id', 'name', 'slug', 'logo_url', 'description']
+
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['id', 'image_url', 'order']
+
+
 class ProductListSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
+    brand = BrandSerializer(read_only=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'slug', 'description', 'price', 'stock', 'image', 'category']
+        fields = [
+            'id', 'name', 'slug', 'short_description', 'description', 'price', 'discount_price', 'rating',
+            'stock', 'image', 'category', 'brand', 'is_new', 'is_popular', 'is_gaming',
+        ]
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
+    brand = BrandSerializer(read_only=True)
+    images = ProductImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'slug', 'description', 'price', 'stock', 'image', 'category']
+        fields = [
+            'id', 'name', 'slug', 'short_description', 'description', 'price', 'discount_price', 'rating',
+            'stock', 'image', 'images', 'category', 'brand', 'is_new', 'is_popular', 'is_gaming',
+        ]
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    product = ProductListSerializer(read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = ['id', 'product', 'quantity', 'unit_price', 'total_price']
+
+
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+    total_amount = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True)
+
+    class Meta:
+        model = Cart
+        fields = ['id', 'user', 'items', 'total_amount']
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id', 'user', 'total_amount', 'status', 'shipping_address', 'placed_at']
+        read_only_fields = ['status', 'placed_at']
 
 
 class UserSerializer(serializers.ModelSerializer):
