@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db import IntegrityError
 from django.db.models import Q
 from django.utils import timezone
 from rest_framework import generics, status
@@ -115,7 +116,10 @@ class UserRegisterView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
+        try:
+            user = serializer.save()
+        except IntegrityError:
+            return Response({'detail': 'A user with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
         refresh = RefreshToken.for_user(user)
         return Response({'refresh': str(refresh), 'access': str(refresh.access_token), 'user': UserSerializer(user).data}, status=status.HTTP_201_CREATED)
 

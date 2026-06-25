@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Brand, Category, Cart, CartItem, Order, Product, ProductImage
+from .models import Brand, Category, Cart, CartItem, Order, Product, ProductImage, Users
+
+
+@admin.register(Users)
+class UsersAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'last_name', 'email', 'created_at']
+    search_fields = ['first_name', 'last_name', 'email']
 
 
 @admin.register(Category)
