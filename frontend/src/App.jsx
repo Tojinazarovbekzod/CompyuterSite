@@ -1,96 +1,183 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
 
+const features = [
+  {
+    title: 'API-first architecture',
+    description: 'Build every experience on JSON endpoints and rapidly ship integrations across React and Django.',
+  },
+  {
+    title: 'Scalable design system',
+    description: 'Reusable components, consistent spacing, and responsive layouts ready for production.',
+  },
+  {
+    title: 'Secure backend',
+    description: 'Start with protected Django views and later extend to auth, user roles, and data access.',
+  },
+  {
+    title: 'Real-time status',
+    description: 'Monitor backend connectivity and server time from the web interface in one click.',
+  },
+]
+
+const plans = [
+  {
+    name: 'Starter',
+    price: 'Free',
+    items: ['Basic API demo', 'Responsive landing page', 'Local development support'],
+  },
+  {
+    name: 'Growth',
+    price: '$49/mo',
+    items: ['Custom endpoints', 'Data model integration', 'Production-ready theme'],
+    popular: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Contact',
+    items: ['Advanced workflows', 'Authentication', 'Dedicated support'],
+  },
+]
+
 function App() {
-  const [apiMessage, setApiMessage] = useState('Loading Compyuter...')
-  const [serverTime, setServerTime] = useState('')
+  const [apiMessage, setApiMessage] = useState('Connecting to Compyuter API...')
+  const [serverTime, setServerTime] = useState('Loading…')
+  const [activeFeature, setActiveFeature] = useState(0)
 
   useEffect(() => {
     fetch('/api/hello/')
       .then((response) => response.json())
       .then((data) => {
-        setApiMessage(data.message || 'Welcome to Compyuter')
+        setApiMessage(data.message || 'Compyuter API ready')
       })
       .catch(() => {
-        setApiMessage('Unable to reach the backend API')
+        setApiMessage('Unable to reach Compyuter API')
       })
 
     fetch('/api/time/')
       .then((response) => response.json())
       .then((data) => {
-        setServerTime(data.server_time || '')
+        setServerTime(data.server_time || 'Unavailable')
       })
       .catch(() => {
-        setServerTime('Server time unavailable')
+        setServerTime('Unavailable')
       })
   }, [])
+
+  const activeFeatureData = useMemo(() => features[activeFeature], [activeFeature])
 
   return (
     <div className="app-shell">
       <Header />
-      <main className="hero-section">
-        <div className="hero-copy">
-          <p className="eyebrow">Compyuter</p>
-          <h1>Your AI-powered web assistant</h1>
-          <p className="hero-text">
-            Build smarter workflows, automate tasks, and connect React with Django API services in one modern web experience.
-          </p>
-          <div className="hero-actions">
-            <a href="#features" className="primary-button">
-              Explore features
-            </a>
-            <a href="#status" className="secondary-button">
-              API status
-            </a>
+
+      <main className="page-container">
+        <section className="hero-block">
+          <div className="hero-copy">
+            <span className="eyebrow">Compyuter</span>
+            <h1>Create modern web apps with React and Django.</h1>
+            <p>
+              Launch an advanced website with clean design, powerful API connectivity, and a backend-ready structure for future growth.
+            </p>
+            <div className="hero-buttons">
+              <a className="btn btn-primary" href="#features">
+                Explore features
+              </a>
+              <a className="btn btn-secondary" href="#plans">
+                View pricing
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="hero-panel">
-          <div className="status-card">
-            <h2>Backend status</h2>
-            <p>{apiMessage}</p>
-            <span>{serverTime ? `Server time: ${serverTime}` : 'Loading server time...'}</span>
+
+          <aside className="hero-aside">
+            <div className="status-box">
+              <p className="status-label">Live backend status</p>
+              <h2>{apiMessage}</h2>
+              <span>{`Server time: ${serverTime}`}</span>
+            </div>
+            <div className="metrics-grid">
+              <div>
+                <p>API endpoints</p>
+                <strong>3</strong>
+              </div>
+              <div>
+                <p>Components</p>
+                <strong>7</strong>
+              </div>
+              <div>
+                <p>Ready for production</p>
+                <strong>Yes</strong>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="features" className="feature-section">
+          <div className="section-header">
+            <p className="eyebrow">Capabilities</p>
+            <h2>Everything you need for an advanced web presence.</h2>
+            <p className="section-copy">
+              Compyuter is designed as a polished developer-first experience with a strong foundation for UI, API, and scale.
+            </p>
           </div>
-        </div>
+
+          <div className="feature-grid">
+            {features.map((feature, index) => (
+              <button
+                type="button"
+                key={feature.title}
+                className={`feature-item ${index === activeFeature ? 'active' : ''}`}
+                onClick={() => setActiveFeature(index)}
+              >
+                <span>{feature.title}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="feature-detail-card">
+            <h3>{activeFeatureData.title}</h3>
+            <p>{activeFeatureData.description}</p>
+          </div>
+        </section>
+
+        <section className="plans-section" id="plans">
+          <div className="section-header">
+            <p className="eyebrow">Pricing</p>
+            <h2>Choose the right path for your project.</h2>
+          </div>
+
+          <div className="plans-grid">
+            {plans.map((plan) => (
+              <article key={plan.name} className={`plan-card ${plan.popular ? 'popular' : ''}`}>
+                {plan.popular && <span className="badge">Popular</span>}
+                <h3>{plan.name}</h3>
+                <p className="plan-price">{plan.price}</p>
+                <ul>
+                  {plan.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <button type="button" className="btn btn-plan">
+                  Choose {plan.name}
+                </button>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="cta-section">
+          <div>
+            <h2>Build the next generation of Compyuter apps.</h2>
+            <p>
+              Use this advanced website as a launchpad for dashboards, automation tools, AI workflow pages, or product experiences.
+            </p>
+          </div>
+          <a href="/" className="btn btn-hero">
+            Start building
+          </a>
+        </section>
       </main>
-
-      <section id="features" className="features-grid">
-        <div className="feature-card">
-          <h3>Fast API integration</h3>
-          <p>Connect React UI with Django endpoints effortlessly using Vite proxying and JSON routes.</p>
-        </div>
-        <div className="feature-card">
-          <h3>Modern UI</h3>
-          <p>Responsive design with clean typography, accessible components, and meaningful calls to action.</p>
-        </div>
-        <div className="feature-card">
-          <h3>Data-ready</h3>
-          <p>Start with simple endpoints and scale to real data models, authentication, and AI-driven features.</p>
-        </div>
-      </section>
-
-      <section className="about-section">
-        <div>
-          <h2>What is Compyuter?</h2>
-          <p>
-            Compyuter is a web platform prototype that blends Django backend services with a React frontend. It provides a foundation for building intelligent tooling, dashboards, and interactive data apps.
-          </p>
-        </div>
-        <div>
-          <h2>How it works</h2>
-          <p>
-            The React client calls Django APIs at <code>/api/*</code>. Vite proxies requests during development so you can work locally without CORS configuration.
-          </p>
-        </div>
-      </section>
-
-      <section id="status" className="contact-section">
-        <h2>Get started</h2>
-        <p>
-          Run the backend with <code>python manage.py runserver</code> and the frontend with <code>npm run dev</code>.
-        </p>
-      </section>
 
       <Footer />
     </div>
