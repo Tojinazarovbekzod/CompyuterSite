@@ -1,7 +1,10 @@
 function Footer() {
   return (
-    <footer className="site-footer" id="contact">
-      <p>Compyuter © 2026 · Built with React + Django</p>
+    <footer className="border-t border-slate-800 bg-slate-950/95 text-slate-400">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-6 py-6 text-sm sm:flex-row sm:justify-between lg:px-8">
+        <p>Compyuter © 2026</p>
+        <p>Built with React, Tailwind CSS, and Django REST Framework</p>
+      </div>
     </footer>
   )
 }

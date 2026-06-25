@@ -1,50 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
-import './App.css'
-
-const features = [
-  {
-    title: 'API-first architecture',
-    description: 'Build every experience on JSON endpoints and rapidly ship integrations across React and Django.',
-  },
-  {
-    title: 'Scalable design system',
-    description: 'Reusable components, consistent spacing, and responsive layouts ready for production.',
-  },
-  {
-    title: 'Secure backend',
-    description: 'Start with protected Django views and later extend to auth, user roles, and data access.',
-  },
-  {
-    title: 'Real-time status',
-    description: 'Monitor backend connectivity and server time from the web interface in one click.',
-  },
-]
-
-const plans = [
-  {
-    name: 'Starter',
-    price: 'Free',
-    items: ['Basic API demo', 'Responsive landing page', 'Local development support'],
-  },
-  {
-    name: 'Growth',
-    price: '$49/mo',
-    items: ['Custom endpoints', 'Data model integration', 'Production-ready theme'],
-    popular: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Contact',
-    items: ['Advanced workflows', 'Authentication', 'Dedicated support'],
-  },
-]
 
 function App() {
   const [apiMessage, setApiMessage] = useState('Connecting to Compyuter API...')
   const [serverTime, setServerTime] = useState('Loading…')
-  const [activeFeature, setActiveFeature] = useState(0)
 
   useEffect(() => {
     fetch('/api/hello/')
@@ -66,116 +26,64 @@ function App() {
       })
   }, [])
 
-  const activeFeatureData = useMemo(() => features[activeFeature], [activeFeature])
-
   return (
-    <div className="app-shell">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <Header />
 
-      <main className="page-container">
-        <section className="hero-block">
-          <div className="hero-copy">
-            <span className="eyebrow">Compyuter</span>
-            <h1>Create modern web apps with React and Django.</h1>
-            <p>
-              Launch an advanced website with clean design, powerful API connectivity, and a backend-ready structure for future growth.
-            </p>
-            <div className="hero-buttons">
-              <a className="btn btn-primary" href="#features">
-                Explore features
+      <main className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+        <section className="grid gap-12 lg:grid-cols-[1.15fr_.85fr]">
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 rounded-full bg-cyan-500/15 px-4 py-2 text-sm font-semibold text-cyan-300 ring-1 ring-cyan-500/20">
+              Tailwind + Django REST
+            </div>
+            <div className="space-y-6">
+              <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+                Simple compyuter site styled with Tailwind CSS
+              </h1>
+              <p className="max-w-2xl text-slate-300 sm:text-lg">
+                A clean, minimal React landing page with Tailwind utility styling and a connected Django REST backend.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a href="#status" className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-6 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400">
+                Check API status
               </a>
-              <a className="btn btn-secondary" href="#plans">
-                View pricing
+              <a href="#features" className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-500">
+                View features
               </a>
             </div>
           </div>
 
-          <aside className="hero-aside">
-            <div className="status-box">
-              <p className="status-label">Live backend status</p>
-              <h2>{apiMessage}</h2>
-              <span>{`Server time: ${serverTime}`}</span>
+          <div className="rounded-[2rem] border border-slate-800 bg-slate-900/80 p-8 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.9)]">
+            <p className="text-sm uppercase tracking-[0.28em] text-cyan-300">Live status</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white">Backend health</h2>
+            <p className="mt-3 text-slate-300">{apiMessage}</p>
+            <div className="mt-6 rounded-3xl bg-slate-950/90 p-6 text-slate-300 ring-1 ring-slate-700">
+              <p className="text-sm uppercase tracking-[0.18em] text-slate-500">Server time</p>
+              <p className="mt-2 text-lg font-medium text-white">{serverTime}</p>
             </div>
-            <div className="metrics-grid">
-              <div>
-                <p>API endpoints</p>
-                <strong>3</strong>
-              </div>
-              <div>
-                <p>Components</p>
-                <strong>7</strong>
-              </div>
-              <div>
-                <p>Ready for production</p>
-                <strong>Yes</strong>
-              </div>
+          </div>
+        </section>
+
+        <section id="features" className="mt-20 grid gap-6 sm:grid-cols-2">
+          {['Fast REST API', 'Modern Tailwind design', 'Responsive layout', 'Ready for production'].map((feature) => (
+            <div key={feature} className="rounded-3xl border border-slate-800 bg-slate-900/80 p-8 shadow-xl shadow-slate-950/20">
+              <h3 className="text-xl font-semibold text-white">{feature}</h3>
+              <p className="mt-3 text-slate-400">{feature === 'Fast REST API'
+                ? 'Built from React to Django API routes for a real backend-driven site.'
+                : feature === 'Modern Tailwind design'
+                ? 'Styled with Tailwind utilities so the layout is clean and simple.'
+                : feature === 'Responsive layout'
+                ? 'Mobile friendly and looks great on every screen size.'
+                : 'Use this foundation to expand with auth, data, and dashboard views.'}</p>
             </div>
-          </aside>
+          ))}
         </section>
 
-        <section id="features" className="feature-section">
-          <div className="section-header">
-            <p className="eyebrow">Capabilities</p>
-            <h2>Everything you need for an advanced web presence.</h2>
-            <p className="section-copy">
-              Compyuter is designed as a polished developer-first experience with a strong foundation for UI, API, and scale.
-            </p>
-          </div>
-
-          <div className="feature-grid">
-            {features.map((feature, index) => (
-              <button
-                type="button"
-                key={feature.title}
-                className={`feature-item ${index === activeFeature ? 'active' : ''}`}
-                onClick={() => setActiveFeature(index)}
-              >
-                <span>{feature.title}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className="feature-detail-card">
-            <h3>{activeFeatureData.title}</h3>
-            <p>{activeFeatureData.description}</p>
-          </div>
-        </section>
-
-        <section className="plans-section" id="plans">
-          <div className="section-header">
-            <p className="eyebrow">Pricing</p>
-            <h2>Choose the right path for your project.</h2>
-          </div>
-
-          <div className="plans-grid">
-            {plans.map((plan) => (
-              <article key={plan.name} className={`plan-card ${plan.popular ? 'popular' : ''}`}>
-                {plan.popular && <span className="badge">Popular</span>}
-                <h3>{plan.name}</h3>
-                <p className="plan-price">{plan.price}</p>
-                <ul>
-                  {plan.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <button type="button" className="btn btn-plan">
-                  Choose {plan.name}
-                </button>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="cta-section">
-          <div>
-            <h2>Build the next generation of Compyuter apps.</h2>
-            <p>
-              Use this advanced website as a launchpad for dashboards, automation tools, AI workflow pages, or product experiences.
-            </p>
-          </div>
-          <a href="/" className="btn btn-hero">
-            Start building
-          </a>
+        <section id="status" className="mt-20 rounded-[2rem] border border-slate-800 bg-slate-900/80 p-10 shadow-2xl shadow-slate-950/30">
+          <h2 className="text-3xl font-semibold text-white">Simple site, powerful backend</h2>
+          <p className="mt-4 max-w-3xl text-slate-400">This site demonstrates a simple Tailwind-based React landing page with live Django REST Framework connectivity. Use it as a starter template and extend it with real content, authentication, or product pages.</p>
         </section>
       </main>
 
