@@ -10,7 +10,7 @@ const categories = [
   { label: 'Mouse', icon: MousePointerClick },
   { label: 'Headphones', icon: Headphones },
   { label: 'Speakers', icon: Speaker },
-  { label: 'Routers', icon: Wifi2 },
+  { label: 'Routers', icon: Wifi },
 ]
 
 function SidebarCategories({ active, onSelect }) {

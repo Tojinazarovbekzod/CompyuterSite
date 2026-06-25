@@ -34,6 +34,8 @@ function ProductDetails() {
     navigate('/cart')
   }
 
+  const price = Number(product?.price)
+
   if (loading) {
     return <div className="flex items-center justify-center py-20"><LoadingSpinner /></div>
   }
@@ -59,9 +61,9 @@ function ProductDetails() {
 
         <div className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-10 shadow-glass">
           <div className="space-y-4">
-            <span className="text-sm uppercase tracking-[0.25em] text-slate-400">{product.category.name}</span>
+            <span className="text-sm uppercase tracking-[0.25em] text-slate-400">{product.category?.name || 'Uncategorized'}</span>
             <h1 className="text-4xl font-semibold text-white">{product.name}</h1>
-            <p className="text-xl font-semibold text-white">${product.price.toFixed(2)}</p>
+            <p className="text-xl font-semibold text-white">${Number.isFinite(price) ? price.toFixed(2) : '0.00'}</p>
           </div>
           <p className="text-slate-300">{product.description}</p>
           <div className="space-y-4">

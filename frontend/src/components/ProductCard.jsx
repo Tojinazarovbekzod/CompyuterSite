@@ -11,6 +11,7 @@ function ProductCard({ product }) {
   const { toggleCompare, compareItems } = useCompare()
   const isWishlist = wishlist.some((item) => item.id === product.id)
   const isCompare = compareItems.some((item) => item.id === product.id)
+  const rating = Number(product.rating)
 
   return (
     <article className="group overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white shadow-lg transition hover:-translate-y-1 hover:border-pink-500/50 dark:border-slate-800 dark:bg-slate-950">
@@ -28,7 +29,7 @@ function ProductCard({ product }) {
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400">
             <Star className="h-4 w-4 text-amber-400" />
-            <span>{product.rating?.toFixed(1) || '4.8'}</span>
+            <span>{Number.isFinite(rating) ? rating.toFixed(1) : '4.8'}</span>
           </div>
           <p className="text-lg font-semibold text-slate-950 dark:text-white">{formatCurrency(product.discount_price || product.price)}</p>
         </div>

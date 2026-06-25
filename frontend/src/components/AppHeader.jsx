@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Heart, ShoppingCart, Moon, SunMedium, Search, User, PackageCheck, ArrowRight, Phone, Grid, Sparkles } from 'lucide-react'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useCurrency } from '../context/CurrencyContext.jsx'
@@ -10,6 +10,7 @@ function AppHeader() {
   const { currency, switchCurrency } = useCurrency()
   const { theme, toggleTheme } = useTheme()
   const { items } = useCart()
+  const navigate = useNavigate()
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-white shadow-sm dark:bg-slate-950 dark:border-slate-800">
@@ -49,13 +50,13 @@ function AppHeader() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-slate-600 dark:text-slate-300">
-            <button className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <button type="button" onClick={() => navigate('/products')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <Grid className="h-4 w-4 text-pink-500" /> Categories
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <button type="button" onClick={() => navigate('/products?category=configurator')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <PackageCheck className="h-4 w-4 text-pink-500" /> Configurator
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
+            <button type="button" onClick={() => navigate('/products?filter=wishlist')} className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
               <Heart className="h-4 w-4 text-pink-500" /> Wishlist
             </button>
             <Link to="/cart" className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-pink-500/60 hover:bg-pink-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">

@@ -4,6 +4,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const slides = [
   {
@@ -27,6 +28,8 @@ const slides = [
 ]
 
 function HeroSlider() {
+  const navigate = useNavigate()
+
   return (
     <section className="relative overflow-hidden rounded-[2rem] border border-slate-200/20 bg-slate-50 px-5 py-8 shadow-xl shadow-slate-200/10 dark:border-slate-800 dark:bg-slate-950">
       <Swiper
@@ -44,7 +47,7 @@ function HeroSlider() {
                 <p className="text-sm uppercase tracking-[0.35em] text-pink-600">Premium collection</p>
                 <h1 className="text-4xl font-semibold text-slate-950 dark:text-white sm:text-5xl">{slide.title}</h1>
                 <p className="max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300">{slide.subtitle}</p>
-                <button className="inline-flex items-center gap-2 rounded-full bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-500/20 transition hover:bg-pink-700">
+                <button type="button" onClick={() => navigate('/products')} className="inline-flex items-center gap-2 rounded-full bg-pink-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-pink-500/20 transition hover:bg-pink-700">
                   {slide.cta}
                   <ArrowRight className="h-4 w-4" />
                 </button>
@@ -57,10 +60,10 @@ function HeroSlider() {
         ))}
       </Swiper>
       <div className="pointer-events-none absolute inset-y-1/2 left-4 right-4 flex items-center justify-between px-2 sm:px-4">
-        <button className="hero-prev pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+        <button type="button" className="hero-prev pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
           <ArrowLeft className="h-5 w-5" />
         </button>
-        <button className="hero-next pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
+        <button type="button" className="hero-next pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white/90 text-slate-900 shadow-lg shadow-slate-900/10 transition hover:bg-pink-600 hover:text-white dark:border-slate-700 dark:bg-slate-950 dark:text-white">
           <ArrowRight className="h-5 w-5" />
         </button>
       </div>
