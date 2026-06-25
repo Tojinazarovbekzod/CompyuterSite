@@ -21,10 +21,10 @@ export function AuthProvider({ children }) {
     }
   }, [token, user])
 
-  const login = async ({ email, password }) => {
+  const login = async ({ username, password }) => {
     setLoading(true)
     try {
-      const data = await authService.login({ email, password })
+      const data = await authService.login({ username, password })
       setToken(data.access)
       setUser(data.user)
       localStorage.setItem('compyuterToken', data.access)

@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 function Login() {
   const navigate = useNavigate()
   const { login } = useAuth()
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -16,7 +16,7 @@ function Login() {
     setError('')
 
     try {
-      await login({ email, password })
+      await login({ username, password })
       navigate('/profile')
     } catch (err) {
       setError(err.message || 'Login failed. Check your credentials.')
@@ -33,11 +33,12 @@ function Login() {
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-6">
         <div>
-          <label className="text-sm font-semibold text-slate-200">Email</label>
+          <label className="text-sm font-semibold text-slate-200">Username</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter your username"
             required
             className="mt-3 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white focus:border-white/20 focus:outline-none"
           />

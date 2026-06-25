@@ -5,19 +5,33 @@ import { useAuth } from '../context/AuthContext.jsx'
 function Register() {
   const navigate = useNavigate()
   const { register } = useAuth()
-  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [surname, setSurname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     setError('')
 
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      return
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters')
+      return
+    }
+
+    setLoading(true)
+
     try {
-      await register({ name, email, password })
+      const fullName = `${username} ${surname}`.trim()
+      await register({ name: fullName, email, password })
       navigate('/profile')
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.')
@@ -34,11 +48,21 @@ function Register() {
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-6">
         <div>
-          <label className="text-sm font-semibold text-slate-200">Full name</label>
+          <label className="text-sm font-semibold text-slate-200">Username</label>
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className="mt-3 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white focus:border-white/20 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="text-sm font-semibold text-slate-200">Surname</label>
+          <input
+            type="text"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
             required
             className="mt-3 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white focus:border-white/20 focus:outline-none"
           />
@@ -60,6 +84,18 @@ function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            minLength="6"
+            className="mt-3 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white focus:border-white/20 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="text-sm font-semibold text-slate-200">Confirm Password</label>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            minLength="6"
             className="mt-3 w-full rounded-3xl border border-white/10 bg-black/70 px-4 py-3 text-white focus:border-white/20 focus:outline-none"
           />
         </div>
