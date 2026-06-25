@@ -111,6 +111,16 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class TokenObtainPairWithUserSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
+        identifier = attrs.get('username') or attrs.get('email')
+        if identifier and '@' in identifier:
+            user = User.objects.filter(email__iexact=identifier).first()
+            if user:
+                attrs['username'] = user.username
+        elif 'email' in attrs and not attrs.get('username'):
+            user = User.objects.filter(email__iexact=attrs['email']).first()
+            if user:
+                attrs['username'] = user.username
+
         data = super().validate(attrs)
         data['user'] = UserSerializer(self.user).data
         return data
